@@ -1,12 +1,74 @@
-# Fringe_MemoryGame
-Fringe memory game made using python and pygame
 
-This is a memory game implemented in python using images/glyphs from one of my favorite sci-fi shows Fringe
+## Документация по игре "Memory Game"
 
-Requirements:
-To download and play the game you must have python and pygame installed.
+### `memory.py`
 
-This is a basic implementation using standard 4 by 4 grid of image glyphs.
-I loved the show and the secret messages the glyphs represented-hence uploaded a memory game!!
+#### Описание
+Файл `memory.py` содержит реализацию игры "Fringe Memory Game" с использованием библиотеки Pygame. Эта игра на соответствие памяти включает в себя открывание пар совпадающих карт для победы в игре.
 
-<img src="https://user-images.githubusercontent.com/46016065/60399902-7fde4080-9b7d-11e9-860f-40b8d4e0c54c.png" width ="500">
+#### Константы игры
+- `FPS`: Общая скорость программы (30 кадров в секунду)
+- `WINDOW_WIDTH`: Ширина общего окна (1000 пикселей)
+- `WINDOW_HEIGHT`: Высота общего окна (800 пикселей)
+- `BOARD_WIDTH`: Количество столбцов с изображениями (4)
+- `BOARD_HEIGHT`: Количество строк с изображениями (4)
+- `TILE_WIDTH`: Ширина каждой карты (100 пикселей)
+- `TILE_HEIGHT`: Высота каждой карты (125 пикселей)
+- `UNCOVER_SPEED`: Скорость открытия карт
+- `LEFT_PANEL`: Ширина левой панели управления (250 пикселей)
+- `GAP_SIZE`: Расстояние между каждой картой по ширине/высоте (20 пикселей)
+- `BORDER_GAP_X`: Расстояние между доской и границей окна по оси X
+- `BORDER_GAP_Y`: Расстояние между доской и границей окна по оси Y
+
+#### Цвета
+- `COL_0` до `COL_12`: Различные цветовые константы, используемые в игре
+- `BG_COLOR`: Цвет фона
+- `TILE_FRONT_COL`: Цвет лицевой стороны карты
+- `PANEL_COL`: Цвет панели управления
+
+#### Пути к изображениям
+- Пути к различным изображениям, используемым в игре
+
+#### Тексты
+- Тексты, отображаемые на левой панели управления и после выигрыша в игре
+
+#### Шрифты
+- `pixel_font`: Путь к шрифту пиксельного искусства, используемому в игре
+
+#### Глобальные переменные
+- `score`: Счет игрока
+- `trial_turns`: Количество ходов, сделанных игроком
+- `flipped_tiles`: Список перевернутых карт
+- `card_centres`: Центры карт
+- `turns`: Количество ходов в игре
+
+#### Функции
+- `main()`: Основная функция для запуска игрового цикла
+- `expose_start_gameboard(board)`: Открывает начальное игровое поле, показывая и закрывая изображения
+- `game_won(board)`: Очищает доску, когда игра выиграна, открывая черный фон
+- `board_reveal_animation(board)`: Постепенно открывает карты доски, изменяя доску временно
+- `reveal_card_slide(board, cards)`: Открывает карты с определенной скоростью
+- `cover_card_slide(board, cards, color=TILE_FRONT_COL, image=True)`: Закрывает открытые карты с той же скоростью
+- `create_random_board()`: Создает случайную доску с изображениями
+- `initialize_exposed(val)`: Устанавливает состояние карт на доске, открыты или закрыты
+- `draw_board(board, exposed, width=TILE_WIDTH, color=TILE_FRONT_COL)`: Рисует доску в ее текущем состоянии на основе значений в сетке exposed
+- `draw_board_icons(board, row, col, coord_pos)`: Рисует изображения/иконы, которые должны быть открыты на доске
+- `draw_board_covers(board, cards, width=TILE_WIDTH, color=TILE_FRONT_COL, image=True)`: Рисует закрытия, скрывающие изображения/иконы
+- `top_coord(card)`: Получает верхние координаты для закрытия карты
+- `get_tile_at_pos(pos_x, pos_y)`: Получает карту по заданным координатам
+- `game_complete(revealed_sect)`: Проверяет, завершена ли игра
+- `draw_control_panel(width, height)`: Рисует боковую панель управления для игры
+- `new_game()`: Начинает новую игру с изменением всех переменных и сбросом состояния игры
+
+### `image_tile.py`
+
+#### Класс `ImageTile`
+- `__init__(self, image, width, height)`: Инициализирует объект ImageTile изображением, шириной и высотой
+- `__str__(self)`: Возвращает строковое представление ImageTile
+- `set_position(self, x_pos, y_pos)`: Устанавливает позицию ImageTile
+- `get_position(self)`: Возвращает позицию ImageTile
+- `display_img(self)`: Заглушка для отображения изображения (не реализовано)
+
+---
+
+Эта документация предоставляет обзор игры "Fringe Memory Game", ее констант, цветов, изображений, текстов, шрифтов, глобальных переменных и функций, присутствующих в файле `memory.py`. Файл `image_tile.py` содержит определение класса `ImageTile`, представляющего память, используемую в игре.
